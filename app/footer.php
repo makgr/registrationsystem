@@ -1,6 +1,6 @@
 <!-- footer -->
 <footer class="footer text-center">
-    All Rights Reserved. Developed by <a target = "_blank" href="#">Sakib and Kawsar</a>
+    All Rights Reserved. Developed by <a target = "_blank" href="#">Sakib & Kawsar</a>
 </footer>
 </div>
 </div>
