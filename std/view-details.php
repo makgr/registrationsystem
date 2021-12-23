@@ -12,6 +12,9 @@ $getInfo = mysqli_fetch_assoc($getInformation);
 
 $getStu = $student->getOfferedCourseList($fid);
 
+//check already applied or not
+$appliedOrNot = $student->alreadyAppliedOrNot($fid,$user_id);
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save'])) {
 
     $apply = $student->applyForRegistration($fid,$user_id);
@@ -154,7 +157,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save'])) {
                                                     ?>
                                                 </td>
                                                 <td>
-                                                  <input type="checkbox" id="checkItem" name="cid[]" value="<?php echo $row['course_id']; ?>" class="checkItem">
+                                                    <?php
+                                                      if(isset($appliedOrNot) == 1){
+                                                    ?>
+                                                    Already applied.
+                                                  <?php }else{
+                                                ?>
+                                                <input type="checkbox" id="checkItem" name="cid[]" value="<?php echo $row['course_id']; ?>" class="checkItem">
+                                                <?php
+                                                  } ?>
                                                 </td>
                                             </tr>
                                             <?php

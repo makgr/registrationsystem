@@ -334,6 +334,17 @@ class Student {
 
         return $result;
     }
+
+    public function alreadyAppliedOrNot($applyId,$user_id){
+
+        $checkquery = "SELECT * FROM registration_info WHERE offer_id = '$applyId' AND student_ID = '$user_id' AND deletion_status = 0 LIMIT 1";
+
+            $typechk = $this->db->select($checkquery);
+            if ($typechk != false) {
+                return 1;
+            }
+    }
+
     
 
 }
