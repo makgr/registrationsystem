@@ -38,6 +38,8 @@
                     <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-user"></i><span class="hide-menu">Registration Info</span></a>
                         <ul aria-expanded="false" class="collapse  first-level">
                             <li class="sidebar-item"><a href="pending-registration.php" class="sidebar-link"><i class="mdi mdi-account-circle"></i><span class="hide-menu">Pending</span></a></li>
+                            <li class="sidebar-item"><a href="approved-registration.php" class="sidebar-link"><i class="mdi mdi-account-circle"></i><span class="hide-menu">Approved</span></a></li>
+
                         </ul>
                     </li>
                 <?php } ?>

@@ -719,6 +719,12 @@ class Admin {
             }
     }
 
+    public function getApprovedRegistrationList(){
+        $query = "SELECT * FROM registration_info WHERE deletion_status = 0 AND status = 1";
+        $result = $this->db->select($query);
+        return $result;
+    }
+
 
 }
 
