@@ -2,6 +2,11 @@
 <?php include 'sidebar.php'; ?>
 <?php
 $getStu = $admin->getAllOffer();
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['extend'])) {
+$extend_id = $_POST['extend_id'];
+$extend_date = $_POST['extend_date'];
+$extendRegDate = $admin->updateRegistrationDate($extend_id ,$extend_date);
+}
 ?>
 <div class="page-wrapper">
     <div class="page-breadcrumb">
@@ -29,6 +34,10 @@ $getStu = $admin->getAllOffer();
                         echo $_SESSION['courseUpdateMessage'];
                         unset($_SESSION['courseUpdateMessage']);
                     }
+                    if (isset($_SESSION['message'])) {
+                        echo $_SESSION['message'];
+                        unset($_SESSION['message']);
+                    }
                     ?>
                     <div class="card-body">
                         <h5 class="card-title">All Offer</h5>
@@ -45,6 +54,7 @@ $getStu = $admin->getAllOffer();
                                         <th>Offer Date</th>
                                         <th>Registration End</th>
                                         <th>Action</th>
+                                        <th>Extend</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -64,6 +74,13 @@ $getStu = $admin->getAllOffer();
                                                 <td><?php echo $fm->formatDate($result['registration_end']); ?></td>
                                                 <td>
                                                 <a target="_blank" href="view-offer-details.php?oid=<?php echo $result['id']; ?>"><span class="label label-primary"><i class="fas fa-eye"></i></span></a>
+                                                </td>
+                                                <td>
+                                                    <form method="post" action="">
+                                                        <input type="date" name="extend_date">
+                                                        <input type="hidden" name="extend_id" value="<?php echo $result['id'];?>">
+                                                        <input type="submit" name="extend" value="extend">
+                                                    </form>
                                                 </td>
                                             </tr>
                                             <?php

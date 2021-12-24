@@ -725,6 +725,29 @@ class Admin {
         return $result;
     }
 
+    public function updateRegistrationDate($extend_id ,$extend_date){
+        $end_date = date("Y-m-d", strtotime($extend_date));
+        $query = "UPDATE offered_courses_info 
+			       SET registration_end = '$end_date' WHERE id = '$extend_id'";
+                   $updated_row = $this->db->update($query);
+                   if ($updated_row) {
+                    $_SESSION['message'] = "<div class='alert alert-success'>
+                                  <h4>Updated successfully.</h4>
+                </div>";
+                header('Location: offer-list.php');
+                        exit();
+                    
+                } else {
+                    $_SESSION['message'] = "
+                <div class='alert alert-danger'>
+                               <h3> Failed. </h3>
+                </div>";
+                header('Location: offer-list.php');
+                exit();
+                   
+                }
+    }
+
 
 }
 
