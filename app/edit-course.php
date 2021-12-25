@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="course_teacher">Course Teacher<span style="color: red"> *</span></label>
-                                                <input type="text" class="form-control" id="course_teacher" name="course_teacher" value="<?php echo $res['course_teacher']; ?>" pattern="[A-Za-z]+" title="Allow only text" placeholder="Program (text only)" autocomplete="off" required>
+                                                <input type="text" class="form-control" id="course_teacher" name="course_teacher" value="<?php echo $res['course_teacher']; ?>" pattern="[A-Z a-z]+" title="Allow only text" placeholder="Program (text only)" autocomplete="off" required>
                                             </div>
                                         </div>
                                     </div>										
