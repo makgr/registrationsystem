@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save'])) {
                     ?>
                     <form class="form-horizontal" method = "post" action="">
                         <div class="card-body">
-                            <h4 class="card-title">Offer Course</h4>
+                            <h4 class="card-title">Offer Course </h4>
                             <div class="row">	
                                 <div class="col-md-3">
                                     <div class="form-group">
@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save'])) {
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="registration_end">Registration End<span style="color: red"> *</span></label>
-                                        <input type="date" class="form-control" id="registration_end" name="registration_end" autocomplete="off" required>
+                                        <input type="date" class="form-control" id="registration_end" name="registration_end" required>
                                     </div>
                                 </div>
                             </div>										
@@ -117,6 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save'])) {
                                                 <td><?php echo $result['program']; ?></td>
                                                 <td>
                                                   <input type="checkbox" id="checkItem" name="cid[]" value="<?php echo $result['id']; ?>" class="checkItem">
+                                                  <input type="hidden" id="crdt" class="crdt" value="<?php echo $result['course_credit']; ?>">
                                                 </td>
                                             </tr>
                                             <?php
@@ -143,6 +144,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save'])) {
     $('#checkAll').click(function() {
         $(':checkbox.checkItem').prop('checked', this.checked);
     });
+
+    $(document).ready(function(){
+    $('.checkItem').on('onccheked mouseup', function() {
+    var number =$('.crdt').val();
+    var numberOfChecked = $('input:checkbox:checked').length;
+    var numberNotChecked = $('input:checkbox:not(":checked")').length;
+    //$('input[type="checkbox"]').remove();
+    var totres = parseInt(number);
+    for (var i=1;i<=numberOfChecked;i++) {
+        totres += parseInt(number);
+    }
+    if(totres >= 16){
+            alert('You can not offer more than 15 credit');
+            // $('.checkItem').attr('disabled', true);
+            $('input:checkbox:not(":checked")').attr('disabled', true);
+        }
+    //$('#test1').text(totres);
+});
+});
+
+
+
+    var today = new Date().toISOString().split('T')[0];
+    document.getElementsByName("registration_end")[0].setAttribute('min', today);
+    
 </script>
 
 

@@ -468,7 +468,7 @@ class Admin {
     }
 
     public function getAllOffer() {
-        $query = "SELECT * FROM offered_courses_info WHERE deletion_status = 0 AND registration_end > DATE(NOW()) ORDER BY id DESC";
+        $query = "SELECT * FROM offered_courses_info WHERE deletion_status = 0 AND registration_end >= DATE(NOW()) ORDER BY id DESC";
         $result = $this->db->select($query);
         return $result;
     }
@@ -746,6 +746,75 @@ class Admin {
                 exit();
                    
                 }
+    }
+
+    public function deleteOfferCourse($deloffercourse,$oid) {
+
+        $query = "DELETE FROM offered_courses WHERE deletion_status = 0 AND id = '$deloffercourse'";
+
+        $result = $this->db->delete($query);
+
+        if ($result) {
+            $_SESSION['delMsg'] = "<div class='alert alert-success'>
+                            <h4>Course Deleted Successfully.</h4>
+                       </div>";
+            header('Location:'.$_SERVER['PHP_SELF'].'?oid='.$oid);
+            exit();
+        } else {
+            $_SESSION['delMsg'] = "<div class='alert alert-danger'>
+                            <h5>Failed to delete course.</h5>
+                       </div>";
+          header('Location:'.$_SERVER['PHP_SELF'].'?oid='.$oid);
+            exit();
+        }
+    }
+
+    public function addNewOfferCourse($data,$oid,$user_id) {
+
+        $course_id = mysqli_real_escape_string($this->db->link, $data['addNewOfferCourse']);
+        $newCrsCredit = $this->getOneCol('course_credit','courses','id',$course_id);
+
+        $checkcrdtquery = "SELECT * FROM offered_courses WHERE deletion_status = 0 AND common_id = '$oid'";
+
+        $result = $this->db->select($checkcrdtquery);
+
+        $totalCredit = 0;
+        while ($crsIdRow = $result->fetch_assoc()) {
+            $courseID = $crsIdRow['course_id'];
+            $crscredit = $this->getOneCol('course_credit','courses','id',$courseID);
+            $totalCredit += $crscredit;
+        }
+
+        $newTotalCredit = $newCrsCredit + $totalCredit;
+
+       if($newTotalCredit > 15){
+            $_SESSION['insmsg'] = "<div class='alert alert-danger'>
+                            <h4>You can not add more than 15 credits.</h4>
+                        </div>";
+            header('Location:'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
+            exit();
+        
+       }
+       
+
+        $userQuery = "INSERT INTO `offered_courses`(`course_id`, `common_id`, `user_id`) 
+              VALUES ('$course_id','$oid','$user_id')";
+
+           $infoinsert = $this->db->insert($userQuery);
+            if ($infoinsert) {
+                $_SESSION['insmsg'] = "<div class='alert alert-success'>
+                                <h4>Added Successfully.</h4>
+                            </div>";
+                header('Location:'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
+                exit();
+            } else {
+                $_SESSION['insmsg'] = "<div class='alert alert-danger'>
+                                <h5>Failed to add.</h5>
+                            </div>";
+                header('Location:'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
+                exit();
+            }
+
     }
 
 

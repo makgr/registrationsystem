@@ -13,6 +13,18 @@ $getInfo = mysqli_fetch_assoc($getInformation);
 $getStu = $admin->getOfferedCourseList($oid);
 
 
+if (isset($_GET['oid']) && isset($_GET['deloffercourse'])) {
+    $deloffercourse = $_GET['deloffercourse'];
+    $offerCrsDel = $admin->deleteOfferCourse($deloffercourse,$oid);
+}
+
+$getOfferCrsList = $admin->getAllCourse();
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['addNewCrs'])) {
+
+    $newOfferCrs = $admin->addNewOfferCourse($_POST,$oid,$user_id);
+}
+
 ?>
 <div class="page-wrapper">
     <div class="page-breadcrumb">
@@ -60,6 +72,16 @@ $getStu = $admin->getOfferedCourseList($oid);
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Course List</h5>
+                        <?php
+                         if(isset($_SESSION['delMsg'])){
+                             echo $_SESSION['delMsg'];
+                             unset($_SESSION['delMsg']);
+                         }
+                         if(isset($_SESSION['insmsg'])){
+                            echo $_SESSION['insmsg'];
+                            unset($_SESSION['insmsg']);
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
@@ -87,6 +109,7 @@ $getStu = $admin->getOfferedCourseList($oid);
                                         <th>Credit</th>
                                         <th>Code</th>
                                         <th>Pre Requisite</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -119,6 +142,9 @@ $getStu = $admin->getOfferedCourseList($oid);
                                                        echo $admin->getOneCol('course_name','courses','id',$prerequisite_course);
                                                     ?>
                                                 </td>
+                                                <td>
+                                                   <a onclick="return confirm('Are you sure to delete?');" href="?oid=<?php echo $oid;?>&&deloffercourse=<?php echo $row['id']; ?>"><span class="label label-danger"><i class="fas fa-trash"></i></span></a>
+                                                </td>
                                             </tr>
                                             <?php
                                         }
@@ -127,6 +153,28 @@ $getStu = $admin->getOfferedCourseList($oid);
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <form class="form-horizontal" method = "post" action="">
+                                <select class="select2" name="addNewOfferCourse" required>
+                                    <option value="">Select Course</option>
+                                    <?php
+                                    while ($crsresult = $getOfferCrsList->fetch_assoc()) {
+                                    ?>
+                                    <option value="<?php echo $crsresult['id'];?>"><?php echo $crsresult['course_name'];?></option>
+                                    <?php } ?>
+                            </select> 
+                            <div class="border-top">
+                            <div class="card-body" align="center">
+                                <button type="submit" name = "addNewCrs" class="btn btn-success">Add</button>
+                            </div>
+                        </div>      
+                        </form>
                     </div>
                 </div>
             </div>
