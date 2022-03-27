@@ -155,7 +155,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save'])) {
     for (var i=1;i<=numberOfChecked;i++) {
         totres += parseInt(number);
     }
-    if(totres >= 16){
+    if(totres >= 19){
             alert('You can not offer more than 15 credit');
             // $('.checkItem').attr('disabled', true);
             $('input:checkbox:not(":checked")').attr('disabled', true);
