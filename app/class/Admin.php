@@ -787,7 +787,7 @@ class Admin {
 
         $newTotalCredit = $newCrsCredit + $totalCredit;
 
-       if($newTotalCredit > 15){
+       if($newTotalCredit > 18){
             $_SESSION['insmsg'] = "<div class='alert alert-danger'>
                             <h4>You can not add more than 15 credits.</h4>
                         </div>";
