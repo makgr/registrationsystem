@@ -281,6 +281,19 @@ class Student {
     public function applyForRegistration($applyId,$user_id){
         $apply_date = date('Y-m-d');
 
+        $checkAppliedCreditQuery = "SELECT SUM(courseCredit) as appCrdt FROM `registered_course` WHERE status = 0";
+        $checkAppliedCreditQueryRes = $this->db->select($checkAppliedCreditQuery);
+        $resRow = mysqli_fetch_assoc($checkAppliedCreditQueryRes);
+
+        if($resRow['appCrdt'] > 18){
+            $_SESSION['insmsg'] = "<div class='alert alert-danger'>
+                                      <h5>You can not apply more than 18 credits.</h5>
+                                  </div>";
+                            header('Location:'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
+                            exit();
+        }
+      
+
         $checkquery = "SELECT * FROM registration_info WHERE offer_id = '$applyId' AND student_ID = '$user_id' AND deletion_status = 0 LIMIT 1";
 
             $typechk = $this->db->select($checkquery);
@@ -321,7 +334,9 @@ class Student {
     }
 
     public function registeredCourses($id,$apply,$user_id){
-        $query = "INSERT INTO `registered_course`(`student_id`, `course_id`, `registration_id`) VALUES ('$user_id','$id','$apply')";
+        $credit = $this->getOneCol('course_credit','courses','id',$id);
+
+        $query = "INSERT INTO `registered_course`(`student_id`, `course_id`,`courseCredit`, `registration_id`) VALUES ('$user_id','$id','$credit','$apply')";
         $result = $this->db->select($query);
         return $result;
     }

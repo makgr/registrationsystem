@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 25, 2021 at 12:45 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.0.13
+-- Generation Time: Mar 27, 2022 at 10:06 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 7.4.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -113,6 +113,28 @@ CREATE TABLE `offered_courses` (
   `deletion_status` tinyint(3) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `offered_courses`
+--
+
+INSERT INTO `offered_courses` (`id`, `course_id`, `common_id`, `user_id`, `added`, `deletion_status`) VALUES
+(1, 1, 1, 8, '2021-12-25 17:16:45', 0),
+(2, 2, 1, 8, '2021-12-25 17:16:45', 0),
+(3, 3, 1, 8, '2021-12-25 17:16:45', 0),
+(4, 4, 1, 8, '2021-12-25 17:16:45', 0),
+(5, 5, 1, 8, '2021-12-25 17:16:45', 0),
+(7, 10, 3, 8, '2022-03-25 18:31:34', 0),
+(11, 1, 4, 8, '2022-03-25 18:32:44', 0),
+(14, 2, 3, 8, '2022-03-26 18:07:13', 0),
+(15, 3, 3, 8, '2022-03-26 18:17:53', 0),
+(16, 10, 3, 8, '2022-03-26 18:17:58', 0),
+(17, 20, 3, 8, '2022-03-26 18:18:04', 0),
+(18, 1, 5, 8, '2022-03-27 18:39:16', 0),
+(19, 2, 5, 8, '2022-03-27 18:39:16', 0),
+(20, 3, 5, 8, '2022-03-27 18:39:16', 0),
+(21, 4, 5, 8, '2022-03-27 18:39:16', 0),
+(22, 5, 5, 8, '2022-03-27 18:39:16', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -130,6 +152,17 @@ CREATE TABLE `offered_courses_info` (
   `deletion_status` tinyint(3) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `offered_courses_info`
+--
+
+INSERT INTO `offered_courses_info` (`id`, `program`, `batch`, `semester`, `offer_date`, `registration_end`, `user_id`, `deletion_status`) VALUES
+(1, 'CSE', 46, '1', '2021-12-25', '2021-12-31', 8, 0),
+(2, 'CSE', 33, '1', '2022-03-25', '2022-03-22', 8, 0),
+(3, 'CSE', 12, '2', '2022-03-26', '2022-03-26', 8, 0),
+(4, 'CSE', 111, '1', '2022-03-26', '2022-03-26', 8, 0),
+(5, 'CSE', 1, '1', '2022-03-28', '2022-03-28', 8, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -140,6 +173,7 @@ CREATE TABLE `registered_course` (
   `id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
   `course_id` int(11) NOT NULL,
+  `courseCredit` int(11) NOT NULL,
   `registration_id` int(11) NOT NULL,
   `status` int(11) NOT NULL DEFAULT 0 COMMENT '0=pending, 1= approved',
   `registered_date` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -187,7 +221,7 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `student_name`, `student_id`, `student_password`, `student_dob`, `program`, `batch`, `student_email`, `student_contact`, `student_address`, `status`, `joining_date`) VALUES
-(1, 'Shafik Ullah', 'CSE00101227', '827ccb0eea8a706c4c34a16891f84e7b', '', 'CSE', 1, 'Shafik@mail.com', '', '', 1, '2021-12-25 07:56:52'),
+(1, 'Shafik Ullah', 'CSE00101227', '827ccb0eea8a706c4c34a16891f84e7b', '2012-01-01', 'CSE', 1, 'Shafik@mail.com', '111111', '', 1, '2021-12-25 07:56:52'),
 (2, 'Kawsar Hossain', 'CSE00101237', '827ccb0eea8a706c4c34a16891f84e7b', '', 'CSE', 1, 'kawsar@mail.com', '', '', 1, '2021-12-25 07:57:53'),
 (3, 'Khaled Mohammad Faisal', 'CSE00101247', '827ccb0eea8a706c4c34a16891f84e7b', '', 'CSE', 1, 'khaled@mail.com', '', '', 1, '2021-12-25 07:58:55'),
 (4, 'Antil Khushbu', 'CSE00202227', '827ccb0eea8a706c4c34a16891f84e7b', '', 'CSE', 1, 'khushbu@mail.com', '', '', 1, '2021-12-25 08:00:10'),
@@ -283,25 +317,25 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT for table `offered_courses`
 --
 ALTER TABLE `offered_courses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `offered_courses_info`
 --
 ALTER TABLE `offered_courses_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `registered_course`
 --
 ALTER TABLE `registered_course`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `registration_info`
 --
 ALTER TABLE `registration_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `students`

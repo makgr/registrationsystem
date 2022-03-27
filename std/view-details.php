@@ -90,6 +90,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save'])) {
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Course List</h5>
+                        <?php
+                         if(isset($_SESSION['insmsg'])){
+                            echo $_SESSION['insmsg'];
+                            unset($_SESSION['insmsg']);
+                         }
+                        ?>
                     </div>
                 </div>
             </div>
