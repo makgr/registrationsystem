@@ -291,7 +291,7 @@ class Student {
                                   </div>";
                             header('Location:'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
                             exit();
-        }
+             }
       
 
         $checkquery = "SELECT * FROM registration_info WHERE offer_id = '$applyId' AND student_ID = '$user_id' AND deletion_status = 0 LIMIT 1";
