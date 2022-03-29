@@ -430,7 +430,7 @@ class Admin {
         $registration_end = mysqli_real_escape_string($this->db->link, date("Y-m-d", strtotime($data['registration_end'])));
         $cur_date = date('Y-m-d');
 
-        $checkQuery = "SELECT * FROM offered_courses_info WHERE program = '$program' AND batch = '$batch' AND semester = '$semester' AND registration_end < '$cur_date' AND deletion_status = 0 LIMIT 1";
+        $checkQuery = "SELECT * FROM offered_courses_info WHERE program = '$program' AND batch = '$batch' AND semester = '$semester' AND registration_end > '$cur_date' AND deletion_status = 0 LIMIT 1";
 
             $chk = $this->db->select($checkQuery);
             if ($chk != false) {
