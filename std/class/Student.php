@@ -281,9 +281,6 @@ class Student {
     public function applyForRegistration($applyId,$user_id){
         $apply_date = date('Y-m-d');
 
-        
-      
-
         $checkquery = "SELECT * FROM registration_info WHERE offer_id = '$applyId' AND student_ID = '$user_id' AND deletion_status = 0 LIMIT 1";
 
             $typechk = $this->db->select($checkquery);
@@ -300,17 +297,6 @@ class Student {
         $query = "INSERT INTO `registration_info`( `offer_id`, `student_ID`,`apply_date`) VALUES ('$applyId','$user_id','$apply_date')";
         $apply = $this->db->insert($query);
         if ($apply) {
-            // $checkAppliedCreditQuery = "SELECT SUM(courseCredit) as appCrdt FROM `registered_course` WHERE student_id = '$user_id' AND status = 0";
-            // $checkAppliedCreditQueryRes = $this->db->select($checkAppliedCreditQuery);
-            // $resRow = mysqli_fetch_assoc($checkAppliedCreditQueryRes);
-
-            // if($resRow['appCrdt'] > 18){
-            //     $_SESSION['insmsg'] = "<div class='alert alert-danger'>
-            //                             <h5>You can not apply more than 18 credits.</h5>
-            //                         </div>";
-            //                     header('Location:'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
-            //                     exit();
-            //     }
 
             $id = mysqli_insert_id($this->db->link);
             return $id;
@@ -377,6 +363,27 @@ class Student {
             if ($typechk != false) {
                 return 1;
             }
+    }
+
+    public function withdrawCourse($wid){
+        $query = "UPDATE registered_course 
+			          SET withdraw_status  = '1'
+					  WHERE id = '$wid'
+					 ";
+                $infoupdate = $this->db->update($query);
+        if($infoupdate){
+            $_SESSION['insmsg'] = "<div class='alert alert-success'>
+                 <h5>Withdraw pending.</h5>
+                </div>";
+                header('Location: applied.php');
+                exit();
+        }else{
+            $_SESSION['insmsg'] = "<div class='alert alert-danger'>
+                 <h5>Failed to withdraw.</h5>
+                </div>";
+                header('Location: applied.php');
+                exit();
+        }
     }
 
     

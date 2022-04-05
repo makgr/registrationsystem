@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 27, 2022 at 10:06 PM
+-- Generation Time: Apr 05, 2022 at 12:06 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.25
 
@@ -118,22 +118,18 @@ CREATE TABLE `offered_courses` (
 --
 
 INSERT INTO `offered_courses` (`id`, `course_id`, `common_id`, `user_id`, `added`, `deletion_status`) VALUES
-(1, 1, 1, 8, '2021-12-25 17:16:45', 0),
-(2, 2, 1, 8, '2021-12-25 17:16:45', 0),
-(3, 3, 1, 8, '2021-12-25 17:16:45', 0),
-(4, 4, 1, 8, '2021-12-25 17:16:45', 0),
-(5, 5, 1, 8, '2021-12-25 17:16:45', 0),
-(7, 10, 3, 8, '2022-03-25 18:31:34', 0),
-(11, 1, 4, 8, '2022-03-25 18:32:44', 0),
-(14, 2, 3, 8, '2022-03-26 18:07:13', 0),
-(15, 3, 3, 8, '2022-03-26 18:17:53', 0),
-(16, 10, 3, 8, '2022-03-26 18:17:58', 0),
-(17, 20, 3, 8, '2022-03-26 18:18:04', 0),
-(18, 1, 5, 8, '2022-03-27 18:39:16', 0),
-(19, 2, 5, 8, '2022-03-27 18:39:16', 0),
-(20, 3, 5, 8, '2022-03-27 18:39:16', 0),
-(21, 4, 5, 8, '2022-03-27 18:39:16', 0),
-(22, 5, 5, 8, '2022-03-27 18:39:16', 0);
+(1, 1, 1, 8, '2022-04-05 08:40:42', 0),
+(2, 2, 1, 8, '2022-04-05 08:40:42', 0),
+(3, 3, 1, 8, '2022-04-05 08:40:42', 0),
+(4, 4, 1, 8, '2022-04-05 08:40:43', 0),
+(5, 5, 1, 8, '2022-04-05 08:40:43', 0),
+(6, 6, 1, 8, '2022-04-05 08:40:43', 0),
+(7, 7, 2, 8, '2022-04-05 08:41:42', 0),
+(8, 8, 2, 8, '2022-04-05 08:41:42', 0),
+(9, 14, 2, 8, '2022-04-05 08:41:42', 0),
+(10, 15, 2, 8, '2022-04-05 08:41:42', 0),
+(11, 27, 2, 8, '2022-04-05 08:41:42', 0),
+(12, 28, 2, 8, '2022-04-05 08:41:43', 0);
 
 -- --------------------------------------------------------
 
@@ -157,11 +153,8 @@ CREATE TABLE `offered_courses_info` (
 --
 
 INSERT INTO `offered_courses_info` (`id`, `program`, `batch`, `semester`, `offer_date`, `registration_end`, `user_id`, `deletion_status`) VALUES
-(1, 'CSE', 46, '1', '2021-12-25', '2021-12-31', 8, 0),
-(2, 'CSE', 33, '1', '2022-03-25', '2022-03-22', 8, 0),
-(3, 'CSE', 12, '2', '2022-03-26', '2022-03-26', 8, 0),
-(4, 'CSE', 111, '1', '2022-03-26', '2022-03-26', 8, 0),
-(5, 'CSE', 1, '1', '2022-03-28', '2022-03-28', 8, 0);
+(1, 'CSE', 1, '1', '2022-04-05', '2022-04-06', 8, 0),
+(2, 'CSE', 1, '2', '2022-04-05', '2022-04-07', 8, 0);
 
 -- --------------------------------------------------------
 
@@ -176,9 +169,22 @@ CREATE TABLE `registered_course` (
   `courseCredit` int(11) NOT NULL,
   `registration_id` int(11) NOT NULL,
   `status` int(11) NOT NULL DEFAULT 0 COMMENT '0=pending, 1= approved',
+  `withdraw_status` int(11) NOT NULL DEFAULT 0 COMMENT '1=pending, 2 = approved',
   `registered_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `deletion_status` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `registered_course`
+--
+
+INSERT INTO `registered_course` (`id`, `student_id`, `course_id`, `courseCredit`, `registration_id`, `status`, `withdraw_status`, `registered_date`, `deletion_status`) VALUES
+(1, 1, 2, 3, 1, 1, 0, '2022-04-05 09:58:13', 0),
+(2, 1, 3, 3, 1, 1, 0, '2022-04-05 09:58:14', 0),
+(3, 1, 4, 3, 1, 1, 0, '2022-04-05 09:58:14', 0),
+(4, 1, 5, 3, 1, 1, 0, '2022-04-05 09:58:14', 0),
+(5, 1, 6, 3, 1, 1, 0, '2022-04-05 09:58:14', 0),
+(6, 1, 7, 3, 2, 1, 0, '2022-04-05 09:58:31', 0);
 
 -- --------------------------------------------------------
 
@@ -194,6 +200,14 @@ CREATE TABLE `registration_info` (
   `apply_date` varchar(50) NOT NULL,
   `deletion_status` tinyint(3) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `registration_info`
+--
+
+INSERT INTO `registration_info` (`id`, `offer_id`, `student_ID`, `status`, `apply_date`, `deletion_status`) VALUES
+(1, 1, 1, 1, '2022-04-05', 0),
+(2, 2, 1, 1, '2022-04-05', 0);
 
 -- --------------------------------------------------------
 
@@ -317,25 +331,25 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT for table `offered_courses`
 --
 ALTER TABLE `offered_courses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `offered_courses_info`
 --
 ALTER TABLE `offered_courses_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `registered_course`
 --
 ALTER TABLE `registered_course`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `registration_info`
 --
 ALTER TABLE `registration_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `students`

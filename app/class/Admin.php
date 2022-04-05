@@ -817,6 +817,49 @@ class Admin {
 
     }
 
+    public function getTotalWithdraw(){
+        $query = "SELECT * FROM registered_course WHERE deletion_status = 0 AND withdraw_status = 1";
+
+        $result = $this->db->select($query);
+        if($result){
+            $total = mysqli_num_rows($result);
+            return $total;
+        }else{
+            return 0;
+        }
+        
+    }
+    public function getTotalWithdrawList(){
+        $query = "SELECT * FROM registered_course WHERE deletion_status = 0 AND withdraw_status = 1 ORDER BY id DESC";
+        $result = $this->db->select($query);
+        return $result;
+    }
+
+    public function approvWithdrawCourse($wid){
+        $query = "UPDATE registered_course 
+			          SET withdraw_status  = '2'
+					 WHERE id = '$wid'
+					 ";
+
+                $infoupdate = $this->db->update($query);
+
+                if ($infoupdate) {
+
+                    $_SESSION['message'] = "<div class='alert alert-success' style='text-align:center;'>
+
+                                   <h4>Approved successfully.</h4>
+
+				</div>";
+                    header('Location: withdraw-list.php');
+                    exit();
+                } else {
+
+                    $_SESSION['message'] = "<div class='alert alert-success' style='text-align:center;'><h4>Failed to Update.</h4></div>";
+                    header('Location: withdraw-list.php');
+                    exit();
+                }
+    }
+
 
 }
 

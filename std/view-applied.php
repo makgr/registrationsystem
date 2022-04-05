@@ -17,6 +17,11 @@ $apply_date = $student->getOneCol('apply_date','registration_info','id',$aid);
 
 $getStu = $student->getAppliedCourseList($aid);
 
+if (isset($_GET['wid'])) {
+    $wid = $_GET['wid'];
+    $withdraw = $student->withdrawCourse($wid);
+}
+
 ?>
 <div class="page-wrapper">
     <div class="page-breadcrumb">
@@ -49,6 +54,7 @@ $getStu = $student->getAppliedCourseList($aid);
                         echo $apply;
                     }
                     ?>
+                    
                 </div>
             </div>
             <div class="col-md-3">
@@ -144,6 +150,24 @@ $getStu = $student->getAppliedCourseList($aid);
 
                                                         }
                                                      ?>
+                                                     /
+                                                     <?php
+                                                     if($row['withdraw_status'] == 1){
+                                                        ?>
+                                                        <span class="label label-warning">Pending Withdrawal</span>
+                                                     <?php
+                                                        }else if($row['withdraw_status'] == 2){
+                                                            ?>
+                                                            <span class="label label-success">Approved Withdrawal</span>
+                                                       <?php
+                                                        }else{
+                                                        ?>
+                                                            <a onclick="return confirm('Are you sure to withdraw?');" href="?wid=<?php echo $row['id']; ?>"><span class="label label-danger">Withdraw</span></a>
+                                                        <?php
+
+                                                        }
+                                                     ?>
+
                                                 </td>
                                             </tr>
                                             <?php

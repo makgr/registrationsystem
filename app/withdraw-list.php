@@ -1,21 +1,26 @@
 <?php include 'header.php'; ?>
 <?php include 'sidebar.php'; ?>
 <?php
-if (isset($_GET['delid'])) {
-    $delid = $_GET['delid'];
-    $staffDel = $admin->deleteStaff($delid);
+if (isset($_GET['aplid'])) {
+    $aplid = $_GET['aplid'];
+    $StdID = $_GET['StdID'];
+    $approvReg = $admin->registrationApprov($aplid,$StdID);
+}
+if (isset($_GET['wid'])) {
+    $wid = $_GET['wid'];
+    $withdraw = $admin->approvWithdrawCourse($wid);
 }
 ?>
 <div class="page-wrapper">
     <div class="page-breadcrumb">
         <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
-                <h4 class="page-title">Applied For Registration</h4>
+                <h4 class="page-title">Withdraw Request</h4>
                 <div class="ml-auto text-right">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">registration</li>
+                            <li class="breadcrumb-item active" aria-current="page">withdraw</li>
                         </ol>
                     </nav>
                 </div>
@@ -28,47 +33,28 @@ if (isset($_GET['delid'])) {
             <div class="col-md-12">
                 <div class="card">
                     <?php
-                    if (isset($staffDel)) {
-                        echo $staffDel;
-                    }
-                    if (isset($staffAp)) {
-                        echo $staffAp;
-                    }
-                    ?>
-                    <?php
                     if (isset($_SESSION['message'])) {
                         echo $_SESSION['message'];
                         unset($_SESSION['message']);
                     }
-                    if (isset($_SESSION['applyMessage'])) {
-                        echo $_SESSION['applyMessage'];
-                        unset($_SESSION['applyMessage']);
-                    }
                     ?>
-                    <?php
-                         if(isset($_SESSION['insmsg'])){
-                            echo $_SESSION['insmsg'];
-                            unset($_SESSION['insmsg']);
-                         }
-                        ?>
                     <div class="card-body">
-                        <h5 class="card-title">All Applied List</h5>
+                        <h5 class="card-title">All Withdraw Request</h5>
                         <div class="table-responsive">
                             <table id="zero_config" class="table table-striped table-bordered tbl">
                                 <thead>
                                     <tr>
                                         <th>SL</th>
+                                        <th>Student</th>
+                                        <th>Student ID</th>
                                         <th>Program</th>
-                                        <th>Batch</th>
-                                        <th>Semester</th>
                                         <th>Registration Date</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                                        <th>Withdraw Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $getStaff = $student->getAppliedRegistrationList($user_id);
+                                    $getStaff = $admin->getTotalWithdrawList();
                                     if ($getStaff) {
                                         $i = 0;
                                         while ($result = $getStaff->fetch_assoc()) {
@@ -78,36 +64,44 @@ if (isset($_GET['delid'])) {
                                                 <td><?php echo $i; ?></td>
                                                 <td>
                                                    <?php 
-                                                       echo $student->getOneCol('program','offered_courses_info','id',$result['offer_id']);
+                                                       echo $admin->getOneCol('student_name','students','id',$result['student_id']);
                                                     ?>
                                                 </td>
                                                 <td>
                                                    <?php 
-                                                       echo $student->getOneCol('batch','offered_courses_info','id',$result['offer_id']);
+                                                       echo $admin->getOneCol('student_id','students','id',$result['student_id']);
                                                     ?>
                                                 </td>
                                                 <td>
                                                    <?php 
-                                                       echo $student->getOneCol('semester','offered_courses_info','id',$result['offer_id']);
+                                                       echo $admin->getOneCol('program','students','id',$result['student_id']);
                                                     ?>
                                                 </td>
-                                                <td><?php echo $fm->formatDate($result['apply_date']); ?></td>
                                                 <td>
-                                                    <?php
-                                                     if($result['status'] == 0){
+                                                   <?php 
+                                                       echo $result['registered_date'];
+                                                    ?>
+                                                </td>
+                                                <td>
+                                                <?php
+                                                     if($result['withdraw_status'] == 1){
                                                         ?>
-                                                        <span class="label label-warning">Pending</span>
+                                                       <a onclick="return confirm('Are you sure to approv?');" href="?wid=<?php echo $result['id']; ?>"> <span class="label label-warning">Pending Withdrawal</span></a>
                                                      <?php
-                                                        }else{
+                                                        }else if($result['withdraw_status'] == 2){
                                                             ?>
-                                                            <span class="label label-success">Approved</span>
+                                                            <span class="label label-success">Approved Withdrawal</span>
                                                        <?php
+                                                        }else{
+                                                        ?>
+                                                            <span class="label label-info">N/A</span>
+                                                        <?php
+
                                                         }
                                                      ?>
-                                               </td>
-                                               <td>
-                                                <a href="view-applied.php?aid=<?php echo $result['id']; ?>"><span class="label label-primary">View</span></a>
                                                 </td>
+                                                
+                                               
                                             </tr>
                                             <?php
                                         }

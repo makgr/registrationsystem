@@ -6,6 +6,7 @@
  $totalChairmen = $admin->getTotalChairmen();
  $totalSupervisor = $admin->getTotSupervisor();
  $totalAccountant = $admin->getTotalAccountant();
+ $getWithdraw = $admin->getTotalWithdraw();
 ?>
 <div class="page-wrapper">
     <div class="page-breadcrumb">
@@ -109,6 +110,21 @@
                                 ?>
                             </h5>
                             <h5 class="text-white">Pending Registration</h5>
+                        </div>
+                    </div> </a>
+                </div>
+                <div class="col-md-4 col-lg-4 col-xlg-3">
+                   <a href="withdraw-list.php"> <div class="card card-hover">
+                        <div class="box bg-dark text-center">
+                            <h1 class="font-light text-white"><i class="fas fa-users"></i></h1>
+                            <h5 class="text-white">
+                                <?php
+                                 if(isset($getWithdraw)){
+                                    echo $getWithdraw;
+                                 }
+                                ?>
+                            </h5>
+                            <h5 class="text-white">Withdraw Request</h5>
                         </div>
                     </div> </a>
                 </div>
