@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save'])) {
                             <label style="margin-left: 8px;color: green">ALL</label>
                         </div>
                         <div class="table-responsive">
-                            <table id="zero_config" class="table table-striped table-bordered tbl">
+                            <table id="subjectlisttable" class="table table-striped table-bordered tbl">
                                 <thead>
                                     <tr>
                                         <th>SL</th>

@@ -125,6 +125,14 @@
 <script src="assets/extra-libs/buttondt/vfs_fonts.js"></script>
 <script>
     $('#zero_config').DataTable();
+    $('#subjectlisttable').DataTable(
+        {
+        "paging":   false,
+        "ordering": false,
+        "info":     false
+    } 
+    );
+
 </script>
 <script>
     $(document).ready(function () {
@@ -136,7 +144,7 @@
             buttons: [
                 {
                     extend: 'pdf',
-                    title: 'Prime College of Nursing User Login History',
+                    title: 'Stamford University Login History',
                     filename: 'User_Login_History_pcnd',
                     exportOptions: {
                         modifier: {
@@ -145,15 +153,15 @@
                     }
                 }, {
                     extend: 'excel',
-                    title: 'Prime College of Nursing<br>User Login History',
+                    title: 'Stamford University<br>User Login History',
                     filename: 'User_Login_History_pcnd'
                 }, {
                     extend: 'copy',
-                    filename: 'Prime College of Nursing User Login History</h1>'
+                    filename: 'Stamford University User Login History</h1>'
                 },
                 {
                     extend: 'print',
-                    title: '<h1>Prime College of Nursing<br>User Login History</h1>',
+                    title: '<h1>Stamford University<br>User Login History</h1>',
                     filename: 'User_Login_History_pcnd',
                     exportOptions: {
                         columns: ':visible',
