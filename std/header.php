@@ -1,5 +1,6 @@
 <?php
 ob_start();
+error_reporting(E_ALL);
 date_default_timezone_set('Asia/Dhaka');
 include 'core/Session.php';
 Session::init();
