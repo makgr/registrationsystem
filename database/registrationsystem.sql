@@ -3,11 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
-<<<<<<< HEAD
--- Generation Time: Apr 05, 2022 at 05:17 PM
-=======
--- Generation Time: Apr 05, 2022 at 12:06 PM
->>>>>>> dbdbf4fe21037208c2ee8eb3ef718fb2cda4e688
+-- Generation Time: Apr 11, 2022 at 12:45 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.25
 
@@ -117,27 +113,6 @@ CREATE TABLE `offered_courses` (
   `deletion_status` tinyint(3) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-<<<<<<< HEAD
-=======
---
--- Dumping data for table `offered_courses`
---
-
-INSERT INTO `offered_courses` (`id`, `course_id`, `common_id`, `user_id`, `added`, `deletion_status`) VALUES
-(1, 1, 1, 8, '2022-04-05 08:40:42', 0),
-(2, 2, 1, 8, '2022-04-05 08:40:42', 0),
-(3, 3, 1, 8, '2022-04-05 08:40:42', 0),
-(4, 4, 1, 8, '2022-04-05 08:40:43', 0),
-(5, 5, 1, 8, '2022-04-05 08:40:43', 0),
-(6, 6, 1, 8, '2022-04-05 08:40:43', 0),
-(7, 7, 2, 8, '2022-04-05 08:41:42', 0),
-(8, 8, 2, 8, '2022-04-05 08:41:42', 0),
-(9, 14, 2, 8, '2022-04-05 08:41:42', 0),
-(10, 15, 2, 8, '2022-04-05 08:41:42', 0),
-(11, 27, 2, 8, '2022-04-05 08:41:42', 0),
-(12, 28, 2, 8, '2022-04-05 08:41:43', 0);
-
->>>>>>> dbdbf4fe21037208c2ee8eb3ef718fb2cda4e688
 -- --------------------------------------------------------
 
 --
@@ -155,17 +130,6 @@ CREATE TABLE `offered_courses_info` (
   `deletion_status` tinyint(3) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-<<<<<<< HEAD
-=======
---
--- Dumping data for table `offered_courses_info`
---
-
-INSERT INTO `offered_courses_info` (`id`, `program`, `batch`, `semester`, `offer_date`, `registration_end`, `user_id`, `deletion_status`) VALUES
-(1, 'CSE', 1, '1', '2022-04-05', '2022-04-06', 8, 0),
-(2, 'CSE', 1, '2', '2022-04-05', '2022-04-07', 8, 0);
-
->>>>>>> dbdbf4fe21037208c2ee8eb3ef718fb2cda4e688
 -- --------------------------------------------------------
 
 --
@@ -184,18 +148,6 @@ CREATE TABLE `registered_course` (
   `deletion_status` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `registered_course`
---
-
-INSERT INTO `registered_course` (`id`, `student_id`, `course_id`, `courseCredit`, `registration_id`, `status`, `withdraw_status`, `registered_date`, `deletion_status`) VALUES
-(1, 1, 2, 3, 1, 1, 0, '2022-04-05 09:58:13', 0),
-(2, 1, 3, 3, 1, 1, 0, '2022-04-05 09:58:14', 0),
-(3, 1, 4, 3, 1, 1, 0, '2022-04-05 09:58:14', 0),
-(4, 1, 5, 3, 1, 1, 0, '2022-04-05 09:58:14', 0),
-(5, 1, 6, 3, 1, 1, 0, '2022-04-05 09:58:14', 0),
-(6, 1, 7, 3, 2, 1, 0, '2022-04-05 09:58:31', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -210,14 +162,6 @@ CREATE TABLE `registration_info` (
   `apply_date` varchar(50) NOT NULL,
   `deletion_status` tinyint(3) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `registration_info`
---
-
-INSERT INTO `registration_info` (`id`, `offer_id`, `student_ID`, `status`, `apply_date`, `deletion_status`) VALUES
-(1, 1, 1, 1, '2022-04-05', 0),
-(2, 2, 1, 1, '2022-04-05', 0);
 
 -- --------------------------------------------------------
 
@@ -341,41 +285,25 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT for table `offered_courses`
 --
 ALTER TABLE `offered_courses`
-<<<<<<< HEAD
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-=======
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
->>>>>>> dbdbf4fe21037208c2ee8eb3ef718fb2cda4e688
 
 --
 -- AUTO_INCREMENT for table `offered_courses_info`
 --
 ALTER TABLE `offered_courses_info`
-<<<<<<< HEAD
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-=======
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
->>>>>>> dbdbf4fe21037208c2ee8eb3ef718fb2cda4e688
 
 --
 -- AUTO_INCREMENT for table `registered_course`
 --
 ALTER TABLE `registered_course`
-<<<<<<< HEAD
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-=======
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
->>>>>>> dbdbf4fe21037208c2ee8eb3ef718fb2cda4e688
 
 --
 -- AUTO_INCREMENT for table `registration_info`
 --
 ALTER TABLE `registration_info`
-<<<<<<< HEAD
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-=======
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
->>>>>>> dbdbf4fe21037208c2ee8eb3ef718fb2cda4e688
 
 --
 -- AUTO_INCREMENT for table `students`
