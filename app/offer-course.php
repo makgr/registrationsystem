@@ -168,6 +168,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save'])) {
 
     var today = new Date().toISOString().split('T')[0];
     document.getElementsByName("registration_end")[0].setAttribute('min', today);
+
+    //extend max 10 days
+
+	var date1 = new Date(); // Now
+date1.setDate(date1.getDate() + 10); // Set now + 10 days as the new date
+var extendMax = date1.toISOString().split('T')[0];
+console.log(extendMax);
+
+   document.getElementById("registration_end").setAttribute("max", extendMax);
     
 </script>
 

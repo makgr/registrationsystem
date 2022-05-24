@@ -101,7 +101,18 @@ $extendRegDate = $admin->updateRegistrationDate($extend_id ,$extend_date);
    
     var today = new Date().toISOString().split('T')[0];
     document.getElementsByName("extend_date")[0].setAttribute('min', today);
+	
+	//extend max 10 days
+
+	var date1 = new Date(); // Now
+date1.setDate(date1.getDate() + 10); // Set now + 10 days as the new date
+var extendMax = date1.toISOString().split('T')[0];
+console.log(extendMax);
+
+   document.getElementById("extend_date").setAttribute("max", extendMax);
+	
     
+	
 </script>
 
 
