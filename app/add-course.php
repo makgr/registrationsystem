@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save'])) {
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="course_credit">Credit<span style="color: red"> *</span></label>
-                                                <input type="number" step="any" class="form-control" id="course_credit" name="course_credit" placeholder="Course credit (Number only)" autocomplete="off" required>
+                                                <input type="number" pattern="^[0-9]" title='Only Number' min="1" max="4" step="1" class="form-control" id="course_credit" name="course_credit" placeholder="Course credit (Number only)" autocomplete="off" required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">

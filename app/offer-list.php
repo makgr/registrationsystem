@@ -77,7 +77,7 @@ $extendRegDate = $admin->updateRegistrationDate($extend_id ,$extend_date);
                                                 </td>
                                                 <td>
                                                     <form method="post" action="">
-                                                        <input type="date" name="extend_date">
+                                                        <input type="date" class="form-control" id="extend_date" name="extend_date">
                                                         <input type="hidden" name="extend_id" value="<?php echo $result['id'];?>">
                                                         <input type="submit" name="extend" value="extend">
                                                     </form>
