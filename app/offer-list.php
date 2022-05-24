@@ -97,6 +97,11 @@ $extendRegDate = $admin->updateRegistrationDate($extend_id ,$extend_date);
     </div>
 </div>
 <?php include 'footer.php'; ?>
-
+<script>
+   
+    var today = new Date().toISOString().split('T')[0];
+    document.getElementsByName("extend_date")[0].setAttribute('min', today);
+    
+</script>
 
 
