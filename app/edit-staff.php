@@ -93,6 +93,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save'])) {
                                         <label for="user_designation">Designation<span style="color: red"> *</span></label>
                                         <input type="text" class="form-control" id="user_designation" name="user_designation" value="<?php echo $getInfo['user_designation'];?>" autocomplete="off" placeholder="Designation" required>
                                     </div>
+                                    <div class="form-group">
+                                        <label for="advisor_batch">Batch<span style="color: red"> Mandatory if you are select advisor</span></label>
+                                        <input type="number" pattern="^[0-9]" title='Only Number' min="1" step="1" class="form-control" id="advisor_batch" name="advisor_batch" value="<?php echo $getInfo['advisor_batch'];?>" placeholder="Enter batch" autocomplete="off">
+                                    </div>
                                 </div>
 
                                 <div class="col-md-6">

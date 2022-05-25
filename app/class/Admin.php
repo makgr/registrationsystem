@@ -141,12 +141,21 @@ class Admin {
         $user_fullname = mysqli_real_escape_string($this->db->link, $data['user_fullname']);
         $user_designation = mysqli_real_escape_string($this->db->link, $data['user_designation']);
         $user_email = mysqli_real_escape_string($this->db->link, $data['user_email']);
+        $advisor_batch = mysqli_real_escape_string($this->db->link, $data['advisor_batch']);
         $user_password = mysqli_real_escape_string($this->db->link, md5($data['user_password']));
 
         if (!preg_match('/^[\p{L} ]+$/u', $user_fullname)){
             
             $msg = "<div class='alert alert-danger'>
                       <h4> Full Name must contain letters and spaces only! </h4>
+                   </div>";
+
+            return $msg;
+          }
+          if ($user_type == 3 && $advisor_batch == ""){
+            
+            $msg = "<div class='alert alert-danger'>
+                      <h4> Advisor batch can not be empty!</h4>
                    </div>";
 
             return $msg;
@@ -170,8 +179,8 @@ class Admin {
 
                 return $msg;
             } else {
-                $userQuery = "INSERT INTO `users`(`user_fullname`, `user_email`, `user_password`, `user_type`, `user_designation`) 
-                VALUES ('$user_fullname','$user_email','$user_password','$user_type','$user_designation')";
+                $userQuery = "INSERT INTO `users`(`user_fullname`, `user_email`, `user_password`, `user_type`, `user_designation`, `advisor_batch`) 
+                VALUES ('$user_fullname','$user_email','$user_password','$user_type','$user_designation','$advisor_batch')";
                     $userinsert = $this->db->insert($userQuery);
                     if ($userinsert) {
                         $msg = "<div class='alert alert-success'>
@@ -235,6 +244,16 @@ class Admin {
         $user_fullname = mysqli_real_escape_string($this->db->link, $data['user_fullname']);
         $user_designation = mysqli_real_escape_string($this->db->link, $data['user_designation']);
         $user_email = mysqli_real_escape_string($this->db->link, $data['user_email']);
+        $advisor_batch = mysqli_real_escape_string($this->db->link, $data['advisor_batch']);
+
+        if ($user_type == 3 && $advisor_batch == ""){
+            
+            $msg = "<div class='alert alert-danger'>
+                      <h4> Advisor batch can not be empty!</h4>
+                   </div>";
+
+            return $msg;
+          }
 
         if ($user_type == "" || $user_fullname == "" || $user_designation == "" || $user_email == "") {
 
@@ -249,7 +268,8 @@ class Admin {
 			user_fullname = '$user_fullname',
 			user_email = '$user_email',
             user_type = '$user_type',
-			user_designation = '$user_designation'
+			user_designation = '$user_designation',
+			advisor_batch = '$advisor_batch'
 			WHERE id = '$sid'";
 
             $result = $this->db->update($query);

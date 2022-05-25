@@ -65,6 +65,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save'])) {
                                         <label for="user_password">Password<span style="color: red"> *</span></label>
                                         <input type="password" class="form-control" id="user_password" name="user_password" placeholder="password" autocomplete="off" required>
                                     </div>
+                                    <div class="form-group">
+                                        <label for="advisor_batch">Batch<span style="color: red"> Mandatory if you are select advisor</span></label>
+                                        <input type="number" pattern="^[0-9]" title='Only Number' min="1" step="1" class="form-control" id="advisor_batch" name="advisor_batch" placeholder="Enter batch" autocomplete="off">
+                                    </div>
                                 </div>
                             </div>										
                         </div>
