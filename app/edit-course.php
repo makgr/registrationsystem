@@ -40,8 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         echo $subUpdate;
                     }
                     ?>
-                    
-                            <form class="form-horizontal" name="demo-form2" method = "post" action="">
+                    <form class="form-horizontal" name="demo-form2" method = "post" action="">
                                 <div class="card-body">
                                     <h4 class="card-title">Course</h4>
                                     <div class="row">	
@@ -67,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="course_credit">Credit<span style="color: red"> *</span></label>
-                                                        <input type="text" class="form-control" id="course_credit" name="course_credit" value="<?php echo $res['course_credit']; ?>" placeholder="Course credit" autocomplete="off" required>
+                                                        <input type="number" pattern="^[0-9]" title='Only Number' min="1" max="4" step="1" class="form-control" id="course_credit" name="course_credit" value="<?php echo $res['course_credit']; ?>" placeholder="Course credit" autocomplete="off" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -81,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <div class="col-md-6">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                <div class="form-group">
+                                                    <div class="form-group">
                                                         <label for="prerequisite_course">Pre Requisite Course<span style="color: red"> *</span></label>
                                                         <select class="form-control" id="prerequisite_course" name="prerequisite_course" required>
                                                             <option>Select Course</option>
@@ -94,6 +93,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                         </select>
                                                     </div>
                                                 </div>
+                                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="course_semester">Semester<span style="color: red"> *</span></label>
+                                                <input type="number" pattern="^[0-9]" title='Only Number' min="1" max="12" step="1" class="form-control" id="course_semester" name="course_semester" value="<?php echo $res['course_semester']; ?>" placeholder="Semester (Number only from 1 to 12)" autocomplete="off" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">

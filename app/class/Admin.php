@@ -308,6 +308,7 @@ class Admin {
         $program = mysqli_real_escape_string($this->db->link, $data['program']);
         $prerequisite_course = mysqli_real_escape_string($this->db->link, $data['prerequisite_course']);
         $course_teacher = mysqli_real_escape_string($this->db->link, $data['course_teacher']);
+        $course_semester = mysqli_real_escape_string($this->db->link, $data['course_semester']);
 
         if (!preg_match('/^[\p{L} ]+$/u', $course_teacher)){
             $msg = "
@@ -319,7 +320,7 @@ class Admin {
           }
 
 
-        if ($course_name == "" || $course_code == "" || $course_credit == "" || $program == "" || $course_teacher == "") {
+        if ($course_name == "" || $course_code == "" || $course_credit == "" || $program == "" || $course_teacher == "" || $course_semester == "") {
 
             $msg = "
                     <div class='alert alert-danger'>
@@ -328,7 +329,7 @@ class Admin {
 
             return $msg;
         } else {
-            $subjectquery = "SELECT * FROM courses WHERE course_code = '$course_code' LIMIT 1";
+            $subjectquery = "SELECT * FROM courses WHERE course_name = '$course_name' AND course_code = '$course_code' LIMIT 1";
 
             $subjectchk = $this->db->select($subjectquery);
             if ($subjectchk != false) {
@@ -337,14 +338,14 @@ class Admin {
 
                 return $msg;
             } else {
-                $query = "INSERT INTO `courses`(`course_name`, `course_code`, `course_credit`, `program`,`prerequisite_course`,`course_teacher`) 
-                VALUES  ('$course_name','$course_code','$course_credit','$program','$prerequisite_course','$course_teacher')";
+                $query = "INSERT INTO `courses`(`course_name`, `course_code`, `course_credit`, `program`,`prerequisite_course`,`course_teacher`, `course_semester`) 
+                VALUES  ('$course_name','$course_code','$course_credit','$program','$prerequisite_course','$course_teacher','$course_semester')";
 
                 $subinsert = $this->db->insert($query);
 
                 if ($subinsert) {
                     $_SESSION['courseMessage'] = "<div class='alert alert-success'>
-                                  <h4>Course added successfully</h4>
+                                  <h4>Course added successfully.</h4>
                 </div>";
                 header('Location: add-course.php');
                         exit();
@@ -404,10 +405,11 @@ class Admin {
         $program = mysqli_real_escape_string($this->db->link, $data['program']);
         $prerequisite_course = mysqli_real_escape_string($this->db->link, $data['prerequisite_course']);
         $course_teacher = mysqli_real_escape_string($this->db->link, $data['course_teacher']);
+        $course_semester = mysqli_real_escape_string($this->db->link, $data['course_semester']);
 
 
 
-        if ($course_name == "" || $course_code == "" || $course_credit == "" || $program == "" || $course_teacher == "") {
+        if ($course_name == "" || $course_code == "" || $course_credit == "" || $program == "" || $course_teacher == "" || $course_semester == "") {
 
             $msg = "
                     <div class='alert alert-danger'>
@@ -418,7 +420,7 @@ class Admin {
         } else {
 
             $query = "UPDATE courses 
-			       SET course_name = '$course_name',course_code = '$course_code',course_credit = '$course_credit', program = '$program', prerequisite_course = '$prerequisite_course', course_teacher = '$course_teacher'
+			       SET course_name = '$course_name',course_code = '$course_code',course_credit = '$course_credit', program = '$program', prerequisite_course = '$prerequisite_course', course_teacher = '$course_teacher', course_semester = '$course_semester'
 				   WHERE id = '$sid'";
 
             $updated_row = $this->db->update($query);

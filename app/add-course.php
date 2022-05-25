@@ -97,6 +97,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save'])) {
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="course_semester">Semester<span style="color: red"> *</span></label>
+                                                <input type="number" pattern="^[0-9]" title='Only Number' min="1" max="12" step="1" class="form-control" id="course_semester" name="course_semester" placeholder="Semester (Number only from 1 to 12)" autocomplete="off" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>										
                         </div>
                         <div class="border-top">
