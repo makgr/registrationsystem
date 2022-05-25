@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 11, 2022 at 12:45 PM
+-- Generation Time: May 25, 2022 at 07:36 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.25
 
@@ -113,6 +113,17 @@ CREATE TABLE `offered_courses` (
   `deletion_status` tinyint(3) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `offered_courses`
+--
+
+INSERT INTO `offered_courses` (`id`, `course_id`, `common_id`, `user_id`, `added`, `deletion_status`) VALUES
+(1, 4, 1, 8, '2022-05-24 10:08:34', 0),
+(2, 5, 1, 8, '2022-05-24 10:08:34', 0),
+(3, 6, 1, 8, '2022-05-24 10:08:34', 0),
+(4, 7, 1, 8, '2022-05-24 10:08:34', 0),
+(5, 8, 1, 8, '2022-05-24 10:08:34', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -129,6 +140,13 @@ CREATE TABLE `offered_courses_info` (
   `user_id` int(11) NOT NULL,
   `deletion_status` tinyint(3) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `offered_courses_info`
+--
+
+INSERT INTO `offered_courses_info` (`id`, `program`, `batch`, `semester`, `offer_date`, `registration_end`, `user_id`, `deletion_status`) VALUES
+(1, 'CSE', 4456, '1', '2022-05-24', '2022-05-31', 8, 0);
 
 -- --------------------------------------------------------
 
@@ -212,6 +230,7 @@ CREATE TABLE `users` (
   `user_password` varchar(255) NOT NULL,
   `user_type` int(11) NOT NULL DEFAULT 0 COMMENT '1=admin, 2 = chairmen, 3 = advisor',
   `user_designation` varchar(255) NOT NULL,
+  `advisor_batch` varchar(20) NOT NULL DEFAULT '0',
   `joining_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `deletion_status` tinyint(3) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -220,10 +239,11 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `user_fullname`, `user_email`, `user_password`, `user_type`, `user_designation`, `joining_date`, `deletion_status`) VALUES
-(1, 'Super Admin', 'admin@mail.com', '827ccb0eea8a706c4c34a16891f84e7b', 1, 'Superadmin', '2021-10-27 14:16:44', 0),
-(7, 'Dr Farahnaaz Feroz', 'chairman@mail.com', '827ccb0eea8a706c4c34a16891f84e7b', 2, 'Professor', '2021-12-25 08:15:59', 0),
-(8, 'Dr Mehedi Hasan', 'advisor@mail.com', '827ccb0eea8a706c4c34a16891f84e7b', 3, 'Professor', '2021-12-25 08:16:53', 0);
+INSERT INTO `users` (`id`, `user_fullname`, `user_email`, `user_password`, `user_type`, `user_designation`, `advisor_batch`, `joining_date`, `deletion_status`) VALUES
+(1, 'Super Admin', 'admin@mail.com', '827ccb0eea8a706c4c34a16891f84e7b', 1, 'Superadmin', '0', '2021-10-27 14:16:44', 0),
+(7, 'Dr Farahnaaz Feroz', 'chairman@mail.com', '827ccb0eea8a706c4c34a16891f84e7b', 2, 'Professor', '0', '2021-12-25 08:15:59', 0),
+(8, 'Dr Mehedi Hasan', 'advisor@mail.com', '827ccb0eea8a706c4c34a16891f84e7b', 3, 'Professor', '0', '2021-12-25 08:16:53', 0),
+(9, 'sss', 'g@mail.com', '827ccb0eea8a706c4c34a16891f84e7b', 3, 'gg', '46', '2022-05-25 17:31:22', 0);
 
 --
 -- Indexes for dumped tables
@@ -285,13 +305,13 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT for table `offered_courses`
 --
 ALTER TABLE `offered_courses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `offered_courses_info`
 --
 ALTER TABLE `offered_courses_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `registered_course`
@@ -315,7 +335,7 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
