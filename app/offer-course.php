@@ -98,6 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save'])) {
                                         <th>Code</th>
                                         <th>Credit</th>
                                         <th>Subject</th>
+                                        <th>Semester</th>
                                         <th>Program</th>
                                         <th>Action</th>
                                     </tr>
@@ -114,6 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save'])) {
                                                 <td><?php echo $result['course_code']; ?></td>
                                                 <td><?php echo $result['course_credit']; ?></td>
                                                 <td><?php echo $result['course_name']; ?></td>
+                                                <td><?php echo $result['course_semester']; ?></td>
                                                 <td><?php echo $result['program']; ?></td>
                                                 <td>
                                                   <input type="checkbox" id="checkItem" name="cid[]" value="<?php echo $result['id']; ?>" class="checkItem">
