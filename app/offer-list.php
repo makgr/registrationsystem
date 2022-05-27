@@ -77,7 +77,7 @@ $extendRegDate = $admin->updateRegistrationDate($extend_id ,$extend_date);
                                                 </td>
                                                 <td>
                                                     <form method="post" action="">
-                                                        <input type="date" class="form-control" id="extend_date" name="extend_date">
+                                                        <input type="date" class="form-control extend_date" id="extend_date" name="extend_date">
                                                         <input type="hidden" name="extend_id" value="<?php echo $result['id'];?>">
                                                         <input type="submit" name="extend" value="extend">
                                                     </form>
@@ -100,7 +100,7 @@ $extendRegDate = $admin->updateRegistrationDate($extend_id ,$extend_date);
 <script>
    
     var today = new Date().toISOString().split('T')[0];
-    document.getElementsByName("extend_date")[0].setAttribute('min', today);
+    document.getElementsByClassName("extend_date")[0].setAttribute('min', today);
 	
 	//extend max 10 days
 
@@ -109,9 +109,19 @@ date1.setDate(date1.getDate() + 10); // Set now + 10 days as the new date
 var extendMax = date1.toISOString().split('T')[0];
 console.log(extendMax);
 
-   document.getElementById("extend_date").setAttribute("max", extendMax);
+   document.getElementsByClassName("extend_date")[0].setAttribute("max", extendMax);
 	
     
+   const boxes = document.querySelectorAll('.extend_date');
+
+    boxes.forEach((box, index) => {
+    box.setAttribute("min", today);
+    });
+
+    boxes.forEach((box2, index) => {
+    box2.setAttribute("max", extendMax);
+    });
+
 	
 </script>
 
