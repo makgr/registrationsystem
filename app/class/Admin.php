@@ -896,6 +896,20 @@ class Admin {
                 }
     }
 
+    public function getgetOfferedSemesterByBatch($advisorBatch){
+        $query = "SELECT semester FROM offered_courses_info WHERE deletion_status = 0 AND batch = '$advisorBatch'";
+        $result = $this->db->select($query);
+        
+        return $result;
+    }
+
+    public function getAllCourseBySemester($advisorBatch) {
+        $query = "SELECT * FROM courses WHERE deletion_status = 0 AND course_semester NOT IN (SELECT semester FROM offered_courses_info WHERE deletion_status = 0 AND batch = '$advisorBatch')";
+        $result = $this->db->select($query);
+        return $result;
+    }
+    
+
 
 }
 

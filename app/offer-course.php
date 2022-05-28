@@ -1,7 +1,23 @@
 <?php include 'header.php'; ?>
 <?php include 'sidebar.php'; ?>
 <?php
-$getStu = $admin->getAllCourse();
+$advisorBatch = Session::get("advisor_batch");
+
+$getSem = $admin->getgetOfferedSemesterByBatch($advisorBatch);
+$semarr = array();
+foreach ($getSem as $key => $sem) {
+    $semlist[$key] = $sem['semester'];
+}
+
+$semester_list = array('0' => 1,'1' => 2,'2' => 3,'3' => 4,'4' => 5,'5' => 6,'6' => 7,'7' => 8,'8' => 9,'9' => 10,'10' => 11,'11' => 12);
+$semarr = $semlist;
+
+$resultunmatchedsem = array_diff($semester_list,$semarr);
+$resultmatchedsem = array_intersect($semester_list,$semarr);
+
+
+
+$getStu = $admin->getAllCourseBySemester($advisorBatch);
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save'])) {
 
     $offerCourseInfo = $admin->offerCourseInformation($_POST,$user_id);
@@ -66,13 +82,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save'])) {
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="batch">Batch<span style="color: red"> *</span></label>
-                                        <input type="number" class="form-control" id="batch" name="batch" placeholder="Batch" autocomplete="off" required>
+                                        <input type="number" class="form-control" id="batch" name="batch" value="<?php echo Session::get("advisor_batch");?>" placeholder="Batch" autocomplete="off" readonly required>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <!-- <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="semester">Semester<span style="color: red"> *</span></label>
                                         <input type="number" class="form-control" id="semester" name="semester" placeholder="Semester" autocomplete="off" required>
+                                    </div>
+                                </div> -->
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="semester">Semester<span style="color: red"> *</span></label>
+                                        <select class="form-control select2" id="semester" name="semester" required>
+                                                <option value="">Select Semester</option>
+                                                <?php
+                                                  foreach ($resultunmatchedsem as $semkey => $semvalue) {
+                                                ?>
+                                                <option value="<?php echo $semvalue; ?>"><?php echo $semvalue; ?></option>
+                                                <?php  } ?>
+                                            </select>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
