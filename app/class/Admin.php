@@ -67,6 +67,7 @@ class Admin {
                 Session::set("user_name", $value['user_fullname']);
                 Session::set("user_type", $value['user_type']);
                 Session::set("email", $value['user_email']);
+                Session::set("advisor_batch", $value['advisor_batch']);
 
                 header('Location: dashboard.php');
             } else {
