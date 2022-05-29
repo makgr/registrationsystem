@@ -470,7 +470,7 @@ class Admin {
         $course_semester = mysqli_real_escape_string($this->db->link, $data['course_semester']);
 
         if($course_name != ""){
-            $subjectNamequery = "SELECT * FROM courses WHERE course_name = '$course_name' AND id = '$sid'";
+            $subjectNamequery = "SELECT * FROM courses WHERE course_name = '$course_name' AND id != '$sid'";
 
                 $subjectNamechk = $this->db->select($subjectNamequery);
                 if ($subjectNamechk != false) {
@@ -482,7 +482,7 @@ class Admin {
           }
 
           if($course_code != ""){
-            $subjectCodequery = "SELECT * FROM courses WHERE course_code = '$course_code' AND id = '$sid'";
+            $subjectCodequery = "SELECT * FROM courses WHERE course_code = '$course_code' AND id != '$sid'";
 
             $subjectCodechk = $this->db->select($subjectCodequery);
             if ($subjectCodechk != false) {
