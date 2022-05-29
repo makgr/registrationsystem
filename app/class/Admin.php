@@ -457,6 +457,29 @@ class Admin {
         $course_teacher = mysqli_real_escape_string($this->db->link, $data['course_teacher']);
         $course_semester = mysqli_real_escape_string($this->db->link, $data['course_semester']);
 
+        if($course_name != ""){
+            $subjectNamequery = "SELECT * FROM courses WHERE course_name = '$course_name' AND id = '$sid'";
+
+                $subjectNamechk = $this->db->select($subjectNamequery);
+                if ($subjectNamechk != false) {
+
+                    $msg = "<div class='alert alert-danger'><h4>Course Name already exits.</h4></div>";
+
+                    return $msg;
+                }
+          }
+
+          if($course_code != ""){
+            $subjectCodequery = "SELECT * FROM courses WHERE course_code = '$course_code' AND id = '$sid'";
+
+            $subjectCodechk = $this->db->select($subjectCodequery);
+            if ($subjectCodechk != false) {
+
+                $msg = "<div class='alert alert-danger'><h4>Course Code already exits.</h4></div>";
+
+                return $msg;
+            }
+          }
 
 
         if ($course_name == "" || $course_code == "" || $course_credit == "" || $program == "" || $course_teacher == "" || $course_semester == "") {
