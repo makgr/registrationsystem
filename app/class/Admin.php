@@ -278,7 +278,16 @@ class Admin {
             return $msg;
         } else {
 
-            $query = "UPDATE users SET 
+            $uequery = "SELECT * FROM users WHERE user_email = '$user_email' AND id != '$sid'";
+
+            $uechk = $this->db->select($uequery);
+            if ($uechk != false) {
+
+                $msg = "<div class='alert alert-danger'>User email already exits.</div>";
+
+                return $msg;
+            }else{
+                $query = "UPDATE users SET 
 			user_fullname = '$user_fullname',
 			user_email = '$user_email',
             user_type = '$user_type',
@@ -303,6 +312,9 @@ class Admin {
             exit();
                
             }
+            }
+
+            
         }
     }
 
