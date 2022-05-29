@@ -345,6 +345,30 @@ class Admin {
             return $msg;
           }
 
+          if($course_name != ""){
+            $subjectNamequery = "SELECT * FROM courses WHERE course_name = '$course_name' LIMIT 1";
+
+                $subjectNamechk = $this->db->select($subjectNamequery);
+                if ($subjectNamechk != false) {
+
+                    $msg = "<div class='alert alert-danger'><h4>Course Name already exits.</h4></div>";
+
+                    return $msg;
+                }
+          }
+
+          if($course_code != ""){
+            $subjectCodequery = "SELECT * FROM courses WHERE course_code = '$course_code' LIMIT 1";
+
+            $subjectCodechk = $this->db->select($subjectCodequery);
+            if ($subjectCodechk != false) {
+
+                $msg = "<div class='alert alert-danger'><h4>Course Code already exits.</h4></div>";
+
+                return $msg;
+            }
+          }
+
 
         if ($course_name == "" || $course_code == "" || $course_credit == "" || $program == "" || $course_teacher == "" || $course_semester == "") {
 
