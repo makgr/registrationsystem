@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2022 at 09:08 PM
+-- Generation Time: May 29, 2022 at 01:50 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.25
 
@@ -226,7 +226,7 @@ INSERT INTO `users` (`id`, `user_fullname`, `user_email`, `user_password`, `user
 (1, 'Super Admin', 'admin@mail.com', '827ccb0eea8a706c4c34a16891f84e7b', 1, 'Superadmin', '0', '2021-10-27 14:16:44', 0),
 (7, 'Dr Farahnaaz Feroz', 'chairman@mail.com', '827ccb0eea8a706c4c34a16891f84e7b', 2, 'Professor', '0', '2021-12-25 08:15:59', 0),
 (8, 'Dr Mehedi Hasan', 'advisor@mail.com', '827ccb0eea8a706c4c34a16891f84e7b', 3, 'Professor', '0', '2021-12-25 08:16:53', 0),
-(9, 'sss', 'g@mail.com', '827ccb0eea8a706c4c34a16891f84e7b', 3, 'gg', '0', '2022-05-25 17:31:22', 0);
+(9, 'sss', 'g@mail.com', '827ccb0eea8a706c4c34a16891f84e7b', 3, 'gg', '22', '2022-05-25 17:31:22', 0);
 
 --
 -- Indexes for dumped tables
@@ -282,7 +282,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `offered_courses`
