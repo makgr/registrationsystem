@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save'])) {
                                     </div>
                                     <div class="form-group">
                                         <label for="user_designation">Designation<span style="color: red"> *</span></label>
-                                        <input type="text" class="form-control" id="user_designation" name="user_designation" pattern="[A-Za-z]+" title="Allow only text" autocomplete="off" placeholder="Designation (text only)" required>
+                                        <input type="text" class="form-control" id="user_designation" name="user_designation" pattern="[A-Z a-z]+" title="Allow only text" autocomplete="off" placeholder="Designation (text only)" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="user_email">Email (Office)<span style="color: red"> *</span></label>

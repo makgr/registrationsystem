@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save'])) {
                                     </div>
                                     <div class="form-group">
                                         <label for="user_designation">Designation<span style="color: red"> *</span></label>
-                                        <input type="text" class="form-control" id="user_designation" name="user_designation" value="<?php echo $getInfo['user_designation'];?>" autocomplete="off" placeholder="Designation" required>
+                                        <input type="text" class="form-control" id="user_designation" pattern="[A-Z a-z]+" title="Allow only text" name="user_designation" value="<?php echo $getInfo['user_designation'];?>" autocomplete="off" placeholder="Designation" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="advisor_batch">Batch<span style="color: red"> Mandatory if you are select advisor</span></label>
