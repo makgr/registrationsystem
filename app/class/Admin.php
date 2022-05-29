@@ -269,6 +269,18 @@ class Admin {
             return $msg;
           }
 
+          if ($advisor_batch != ""){
+            $batchquery = "SELECT * FROM users WHERE user_type = '3' AND advisor_batch = '$advisor_batch' AND id != '$sid'";
+
+            $batchchk = $this->db->select($batchquery);
+            if ($batchchk != false) {
+
+                $msg = "<div class='alert alert-danger'>Batch already assigned.</div>";
+
+                return $msg;
+            }
+          }
+
         if ($user_type == "" || $user_fullname == "" || $user_designation == "" || $user_email == "") {
 
             $msg = "<div class='alert alert-danger'>
