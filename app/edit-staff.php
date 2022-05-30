@@ -102,11 +102,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save'])) {
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="fullname">Full Name<span style="color: red"> *</span></label>
-                                        <input type="text" class="form-control" id="fullname" name="user_fullname" placeholder="Full Name" value="<?php echo $getInfo['user_fullname'];?>" autocomplete="off" required>
+                                        <input type="text" class="form-control" id="fullname" pattern="[A-Z a-z]+" title="Allow only text" name="user_fullname" placeholder="Full Name" value="<?php echo $getInfo['user_fullname'];?>" autocomplete="off" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="user_email">Email (Office)<span style="color: red"> *</span></label>
-                                        <input type="text" class="form-control" id="user_email" name="user_email" value="<?php echo $getInfo['user_email'];?>" autocomplete="off" placeholder="Email" required>
+                                        <input type="email" class="form-control" id="user_email" name="user_email" value="<?php echo $getInfo['user_email'];?>" autocomplete="off" placeholder="Email" required>
                                     </div>
                                 </div>
                             </div>										
