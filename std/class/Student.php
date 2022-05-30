@@ -331,12 +331,14 @@ class Student {
             $newCrdt = $resRow['appCrdt'] + $credit;
 
             if($newCrdt > 18){
+                $delRegInfoQuery = "DELETE FROM registration_info WHERE id = '$apply'";
+                $delRegInfo = $this->db->delete($delRegInfoQuery);
+
                 $_SESSION['insmsg'] = "<div class='alert alert-danger'>
                                         <h5>You can not apply more than 18 credits.</h5>
                                     </div>";
                                 header('Location:'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
                                 exit();
-                
                 }else{
                     $query = "INSERT INTO `registered_course`(`student_id`, `course_id`,`courseCredit`, `registration_id`) VALUES ('$user_id','$id','$credit','$apply')";
                     $result = $this->db->select($query);
