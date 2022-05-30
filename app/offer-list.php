@@ -61,8 +61,12 @@ $extendRegDate = $admin->updateRegistrationDate($extend_id ,$extend_date);
                                     <?php
                                     if ($getStu) {
                                         $i = 0;
+                                        $advBatch = Session::get("user_id");
                                         while ($result = $getStu->fetch_assoc()) {
                                             $i++;
+                                            $batch = $result['batch'];
+                                            
+                                            if($advBatch == $advBatch){
                                             ?>
                                             <tr>
                                                 <td><?php echo $i; ?></td>
@@ -85,6 +89,7 @@ $extendRegDate = $admin->updateRegistrationDate($extend_id ,$extend_date);
                                             </tr>
                                             <?php
                                         }
+                                     }
                                     }
                                     ?>
                                 </tbody>
