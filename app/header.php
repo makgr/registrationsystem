@@ -1,6 +1,5 @@
 <?php
 ob_start();
-error_reporting(0);
 include 'core/Session.php';
 Session::init();
 Session::checkSession();

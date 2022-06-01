@@ -5,8 +5,13 @@ $advisorBatch = Session::get("advisor_batch");
 
 $getSem = $admin->getgetOfferedSemesterByBatch($advisorBatch);
 $semarr = array();
-foreach ($getSem as $key => $sem) {
-    $semlist[$key] = $sem['semester'];
+$semlist = array();
+
+if (is_array($getSem) || is_object($getSem))
+{
+    foreach ($getSem as $key => $sem) {
+        $semlist[$key] = $sem['semester'];
+    }
 }
 
 $semester_list = array('0' => 1,'1' => 2,'2' => 3,'3' => 4,'4' => 5,'5' => 6,'6' => 7,'7' => 8,'8' => 9,'9' => 10,'10' => 11,'11' => 12);
